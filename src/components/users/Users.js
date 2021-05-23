@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import UserItem from './UserItem';
 import Spinner from '../layout/Spinner';
-import PropTypes from 'prop-types';
+//initialise the context with capital G
+import GithubContext from '../../context/github/githubContext';
 
-const Users = ({users, loading}) => {
+const Users = () => {
+  //call it here with usecontext 
+  const githubContext = useContext(GithubContext);
+  
+  const { loading, users } = githubContext;
+
+  
   if (loading)
   {
     return <Spinner/>
@@ -24,10 +31,10 @@ const Users = ({users, loading}) => {
 
 
 //refer to "Lists & Passing State With Props" video from 6th minute onwards  
-Users.propTypes = {
-  users: PropTypes.array.isRequired,
-  loading:PropTypes.bool.isRequired,
-}
+// Users.propTypes = {
+//   users: PropTypes.array.isRequired,
+//   loading:PropTypes.bool.isRequired,
+// }
 const userStyle = {
 
   display: 'grid',
